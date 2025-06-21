@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Paper,
-  TextField,
   IconButton,
   InputAdornment,
   FormControl,
@@ -10,15 +9,19 @@ import {
   OutlinedInput,
 } from "@mui/material";
 
+import { useTheme } from "@mui/material/styles";
+
 import logo from "../../assets/logo.png";
 import hideImg from "../../assets/hide.png";
 
 function LoginForm() {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundColor: "rgba(68, 178, 111, 1)",
+        backgroundColor: theme.palette.primary.main,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -27,56 +30,26 @@ function LoginForm() {
       <Paper
         elevation={3}
         sx={{
-          padding: 15,
+          padding: 14,
           width: 500,
-          alignSelf: "center",
-          //   height: "60vh",
-          backgroundColor: "rgba(245, 245, 245, 1)",
+          backgroundColor: theme.palette.background.default,
         }}
       >
         <Box sx={{ textAlign: "center", marginBottom: "85px" }}>
           <img src={logo} alt="Rozetka Logo" style={{ height: "40px" }} />
         </Box>
 
-        <TextField
-          sx={{
-            marginBottom: "40px",
-            backgroundColor: "rgba(217, 217, 217, 1)",
-          }}
-          label="User Name"
-          name="userName"
+        <FormControl
           fullWidth
           variant="outlined"
-          //   color="rgba(68, 178, 111, 1)"
-          onChange={() => {}}
-        />
-
-        <TextField
-          label="Password"
-          name="password"
-          type="password"
-          fullWidth
-          variant="outlined"
-          onChange={() => {}}
           sx={{
             marginBottom: "40px",
-            backgroundColor: "rgba(217, 217, 217, 1)",
-          }}
-        />
-
-        <img src={hideImg} />
-
-        {/* <FormControl
-          fullWidth
-          sx={{
-            marginBottom: "40px",
-            backgroundColor: "rgba(217, 217, 217, 1)",
-            borderRadius: "8px",
+            backgroundColor: theme.palette.custom.greyBackground,
           }}
         >
           <InputLabel
-            sx={{ color: "rgba(68, 178, 111, 1)" }}
             htmlFor="user-name"
+            sx={{ color: theme.palette.primary.main }}
           >
             User Name
           </InputLabel>
@@ -84,22 +57,29 @@ function LoginForm() {
             id="user-name"
             label="User Name"
             sx={{
-              color: "rgba(68, 178, 111, 1)",
+              height: "56px",
+              color: theme.palette.primary.main,
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: theme.palette.custom.greyBackground,
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: theme.palette.primary.main,
+              },
             }}
           />
         </FormControl>
 
         <FormControl
           fullWidth
+          variant="outlined"
           sx={{
             marginBottom: "40px",
-            backgroundColor: "rgba(217, 217, 217, 1)",
-            borderRadius: "8px",
+            backgroundColor: theme.palette.custom.greyBackground,
           }}
         >
           <InputLabel
-            sx={{ color: "rgba(68, 178, 111, 1)" }}
             htmlFor="password"
+            sx={{ color: theme.palette.primary.main }}
           >
             Password
           </InputLabel>
@@ -108,7 +88,14 @@ function LoginForm() {
             type="password"
             label="Password"
             sx={{
-              color: "rgba(68, 178, 111, 1)",
+              height: "56px",
+              color: theme.palette.primary.main,
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: theme.palette.custom.greyBackground,
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: theme.palette.primary.main,
+              },
             }}
             endAdornment={
               <InputAdornment position="end">
@@ -116,24 +103,30 @@ function LoginForm() {
                   <img
                     src={hideImg}
                     alt="eye icon"
-                    style={{ width: 24, height: 24 }}
+                    style={{ width: 34, height: 24 }}
                   />
                 </IconButton>
               </InputAdornment>
             }
           />
-        </FormControl> */}
+        </FormControl>
 
         <Box sx={{ textAlign: "center" }}>
           <Button
             variant="contained"
             fullWidth
             sx={{
-              backgroundColor: "rgba(68, 178, 111, 1)",
+              backgroundColor: theme.palette.primary.main,
+              color: theme.palette.custom.lightText,
               height: "56px",
               marginBottom: "90px",
+              fontWeight: "bold",
+              fontSize: "24px",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: theme.palette.primary.dark,
+              },
             }}
-            onClick={() => {}}
           >
             Login
           </Button>
