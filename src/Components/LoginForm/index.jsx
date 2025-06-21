@@ -11,11 +11,34 @@ import {
 
 import { useTheme } from "@mui/material/styles";
 
+import { useState } from "react";
+
 import logo from "../../assets/logo.png";
 import hideImg from "../../assets/hide.png";
 
 function LoginForm() {
   const theme = useTheme();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  function handleLogin() {
+    if (!username.trim() || !password.trim()) {
+      setError("Both fields are required");
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify({ username, password }));
+    setError("");
+    alert("Logged in successfully!");
+    // setUsername("");
+    // setPassword("");
+
+    // const savedUser = JSON.parse(localStorage.getItem("user"));
+    // console.log(savedUser.username, savedUser.password);
+  }
 
   return (
     <Box
@@ -56,6 +79,8 @@ function LoginForm() {
           <OutlinedInput
             id="user-name"
             label="User Name"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
             sx={{
               height: "56px",
               color: theme.palette.primary.main,
@@ -85,8 +110,10 @@ function LoginForm() {
           </InputLabel>
           <OutlinedInput
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             label="Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
             sx={{
               height: "56px",
               color: theme.palette.primary.main,
@@ -99,22 +126,49 @@ function LoginForm() {
             }}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton edge="end">
+                <IconButton
+                  edge="end"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
                   <img
                     src={hideImg}
                     alt="eye icon"
                     style={{ width: 34, height: 24 }}
                   />
+                  {!showPassword && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: 0,
+                        width: "100%",
+                        height: "2px",
+                        backgroundColor: theme.palette.primary.main,
+                        transform: "translateY(-50%) rotate(-15deg)",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  )}
                 </IconButton>
               </InputAdornment>
             }
           />
         </FormControl>
 
+        {error && (
+          <Typography
+            color="error"
+            sx={{ marginBottom: "16px", textAlign: "center" }}
+          >
+            {error}
+          </Typography>
+        )}
+
         <Box sx={{ textAlign: "center" }}>
           <Button
             variant="contained"
             fullWidth
+            onClick={handleLogin}
             sx={{
               backgroundColor: theme.palette.primary.main,
               color: theme.palette.custom.lightText,
