@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import LoginForm from "./Components/LoginForm";
 import ProductsPage from "./Components/ProductsPage";
+import ModalEditProduct from "./Components/ModalEditProduct";
 
 const theme = createTheme({
   palette: {
@@ -26,7 +27,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* <LoginForm /> */}
-      <ProductsPage />
+      {/* <ProductsPage /> */}
+      <ModalEditProduct />
     </ThemeProvider>
   );
 }

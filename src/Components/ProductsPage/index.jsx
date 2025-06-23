@@ -18,44 +18,15 @@ import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const products = [
-  {
-    id: 1,
-    category: "phone",
-    name: "iPhone 15 Pro",
-    quantity: "5",
-    price: 999,
-    description: "Latest Apple phone",
-    photo: "https://via.placeholder.com/100",
-  },
-  {
-    id: 2,
-    category: "phone",
-    name: "iPhone 15 Pro",
-    quantity: "5",
-    price: 999,
-    description: "Latest Apple phone",
-    photo: "https://via.placeholder.com/100",
-  },
-  {
-    id: 3,
-    category: "phone",
-    name: "iPhone 15 Pro",
-    quantity: "5",
-    price: 999,
-    description: "Latest Apple phone",
-    photo: "https://via.placeholder.com/100",
-  },
-  {
-    id: 4,
-    category: "phone",
-    name: "iPhone 15 Pro",
-    quantity: "5",
-    price: 999,
-    description: "Latest Apple phone",
-    photo: "https://via.placeholder.com/100",
-  },
-];
+import products from "../../data.json";
+
+const cellStyle = {
+  width: "16.66%",
+  textAlign: "center",
+  verticalAlign: "middle",
+  fontWeight: "700",
+  fontSize: "16px",
+};
 
 function ProductsPage() {
   const theme = useTheme();
@@ -140,14 +111,7 @@ function ProductsPage() {
         >
           <TableRow>
             <TableCell
-              sx={{
-                color: theme.palette.custom.darkGreyText,
-                width: "16.66%",
-                textAlign: "center",
-                verticalAlign: "middle",
-                fontWeight: "700",
-                fontSize: "16px",
-              }}
+              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
             >
               ID
               <SyncAltOutlinedIcon
@@ -176,14 +140,7 @@ function ProductsPage() {
               />
             </TableCell>
             <TableCell
-              sx={{
-                color: theme.palette.custom.darkGreyText,
-                width: "16.66%",
-                textAlign: "center",
-                verticalAlign: "middle",
-                fontWeight: "700",
-                fontSize: "16px",
-              }}
+              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
             >
               Name
               <SyncAltOutlinedIcon
@@ -194,14 +151,7 @@ function ProductsPage() {
               />
             </TableCell>
             <TableCell
-              sx={{
-                color: theme.palette.custom.darkGreyText,
-                width: "16.66%",
-                textAlign: "center",
-                verticalAlign: "middle",
-                fontWeight: "700",
-                fontSize: "16px",
-              }}
+              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
             >
               Quantity
               <SyncAltOutlinedIcon
@@ -212,14 +162,7 @@ function ProductsPage() {
               />
             </TableCell>
             <TableCell
-              sx={{
-                color: theme.palette.custom.darkGreyText,
-                width: "16.66%",
-                textAlign: "center",
-                verticalAlign: "middle",
-                fontWeight: "700",
-                fontSize: "16px",
-              }}
+              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
             >
               Price (₴)
               <SyncAltOutlinedIcon
@@ -230,14 +173,7 @@ function ProductsPage() {
               />
             </TableCell>
             <TableCell
-              sx={{
-                color: theme.palette.custom.darkGreyText,
-                width: "16.66%",
-                textAlign: "center",
-                verticalAlign: "middle",
-                fontWeight: "700",
-                fontSize: "16px",
-              }}
+              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
             ></TableCell>
           </TableRow>
         </TableHead>
@@ -254,75 +190,55 @@ function ProductsPage() {
             >
               <TableCell
                 sx={{
+                  ...cellStyle,
                   color:
                     index % 2 === 0
                       ? theme.palette.custom.lightText
                       : theme.palette.custom.lightGreyText,
-                  width: "16.66%",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  fontWeight: "700",
-                  fontSize: "16px",
                 }}
               >
                 {row.id}
               </TableCell>
               <TableCell
                 sx={{
+                  ...cellStyle,
                   color:
                     index % 2 === 0
                       ? theme.palette.custom.lightText
                       : theme.palette.custom.lightGreyText,
-                  width: "16.66%",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  fontWeight: "700",
-                  fontSize: "16px",
                 }}
               >
                 {row.category}
               </TableCell>
               <TableCell
                 sx={{
+                  ...cellStyle,
                   color:
                     index % 2 === 0
                       ? theme.palette.custom.lightText
                       : theme.palette.custom.lightGreyText,
-                  width: "16.66%",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  fontWeight: "700",
-                  fontSize: "16px",
                 }}
               >
                 {row.name}
               </TableCell>
               <TableCell
                 sx={{
+                  ...cellStyle,
                   color:
                     index % 2 === 0
                       ? theme.palette.custom.lightText
                       : theme.palette.custom.lightGreyText,
-                  width: "16.66%",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  fontWeight: "700",
-                  fontSize: "16px",
                 }}
               >
                 {row.quantity}
               </TableCell>
               <TableCell
                 sx={{
+                  ...cellStyle,
                   color:
                     index % 2 === 0
                       ? theme.palette.custom.lightText
                       : theme.palette.custom.lightGreyText,
-                  width: "16.66%",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  fontWeight: "700",
-                  fontSize: "16px",
                 }}
               >
                 {row.price}

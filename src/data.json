@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "category": "phone",
+    "name": "iPhone 15 Pro",
+    "quantity": "5",
+    "price": 999,
+    "description": "Latest Apple phone",
+    "photo": "https://via.placeholder.com/100"
+  },
+  {
+    "id": 2,
+    "category": "phone",
+    "name": "iPhone 15 Pro",
+    "quantity": "5",
+    "price": 999,
+    "description": "Latest Apple phone",
+    "photo": "https://via.placeholder.com/100"
+  },
+  {
+    "id": 3,
+    "category": "phone",
+    "name": "iPhone 15 Pro",
+    "quantity": "5",
+    "price": 999,
+    "description": "Latest Apple phone",
+    "photo": "https://via.placeholder.com/100"
+  },
+  {
+    "id": 4,
+    "category": "phone",
+    "name": "iPhone 15 Pro",
+    "quantity": "5",
+    "price": 999,
+    "description": "Latest Apple phone",
+    "photo": "https://via.placeholder.com/100"
+  }
+]
