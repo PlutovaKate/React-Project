@@ -24,7 +24,7 @@ function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  function handleLogin() {
+  const handleLogin = () => {
     if (!username.trim() || !password.trim()) {
       setError("Both fields are required");
       return;
@@ -38,7 +38,7 @@ function LoginForm() {
 
     // const savedUser = JSON.parse(localStorage.getItem("user"));
     // console.log(savedUser.username, savedUser.password);
-  }
+  };
 
   return (
     <Box
@@ -67,7 +67,7 @@ function LoginForm() {
           variant="outlined"
           sx={{
             marginBottom: "40px",
-            backgroundColor: theme.palette.custom.greyBackground,
+            backgroundColor: theme.palette.background.grey,
           }}
         >
           <InputLabel
@@ -85,7 +85,7 @@ function LoginForm() {
               height: "56px",
               color: theme.palette.primary.main,
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: theme.palette.custom.greyBackground,
+                borderColor: theme.palette.background.grey,
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                 borderColor: theme.palette.primary.main,
@@ -99,7 +99,7 @@ function LoginForm() {
           variant="outlined"
           sx={{
             marginBottom: "40px",
-            backgroundColor: theme.palette.custom.greyBackground,
+            backgroundColor: theme.palette.background.grey,
           }}
         >
           <InputLabel
@@ -118,7 +118,7 @@ function LoginForm() {
               height: "56px",
               color: theme.palette.primary.main,
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: theme.palette.custom.greyBackground,
+                borderColor: theme.palette.background.grey,
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                 borderColor: theme.palette.primary.main,
