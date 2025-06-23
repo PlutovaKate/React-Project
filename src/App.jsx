@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import LoginForm from "./Components/LoginForm";
 import ProductsPage from "./Components/ProductsPage";
 import ModalEditProduct from "./Components/ModalEditProduct";
+import ModalDeleteConfirmation from "./Components/ModalDeleteConfirmation";
 
 const theme = createTheme({
   palette: {
@@ -13,6 +14,8 @@ const theme = createTheme({
       brightGreen: "rgba(14, 200, 111, 1)",
       lightGreen: "rgba(60, 215, 140, 1)",
       grey: "rgba(217, 217, 217, 1)",
+      lightGrey: "rgba(216, 213, 213, 1)",
+      red: "rgba(251, 0, 0, 1)",
     },
     custom: {
       lightText: " rgba(255, 255, 255, 1)",
@@ -28,7 +31,8 @@ function App() {
     <ThemeProvider theme={theme}>
       {/* <LoginForm /> */}
       {/* <ProductsPage /> */}
-      <ModalEditProduct />
+      {/* <ModalEditProduct /> */}
+      <ModalDeleteConfirmation />
     </ThemeProvider>
   );
 }
