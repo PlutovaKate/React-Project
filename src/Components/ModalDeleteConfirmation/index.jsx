@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, Modal } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 const buttonStyle = {
@@ -9,66 +9,67 @@ const buttonStyle = {
   fontSize: "16px",
 };
 
-function ModalDeleteConfirmation() {
+function ModalDeleteConfirmation({ open, onClose, product }) {
   const theme = useTheme();
 
   return (
-    //  <Modal >
-    <Box
-      sx={{
-        width: "430px",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        backgroundColor: theme.palette.custom.lightText,
-        padding: "10px",
-      }}
-    >
-      <Typography
-        sx={{
-          color: theme.palette.custom.greenText,
-          fontWeight: "700",
-          fontSize: "16px",
-          textAlign: "center",
-          marginTop: "35px",
-        }}
-      >
-        Are u sure you want to delete this product?
-      </Typography>
-
+    <Modal open={open} onClose={onClose}>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginTop: "45px",
-          marginRight: "10px",
-          gap: "24px",
+          width: "430px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          backgroundColor: theme.palette.custom.lightText,
+          padding: "10px",
         }}
       >
-        <Button
-          variant="contained"
+        <Typography
           sx={{
-            ...buttonStyle,
-            backgroundColor: theme.palette.background.lightGrey,
-            color: theme.palette.custom.lightText,
+            color: theme.palette.custom.greenText,
+            fontWeight: "700",
+            fontSize: "16px",
+            textAlign: "center",
+            marginTop: "35px",
           }}
         >
-          Cancel
-        </Button>
-        <Button
-          variant="contained"
+          Are you sure you want to delete <strong>{product?.name}</strong>?
+        </Typography>
+
+        <Box
           sx={{
-            ...buttonStyle,
-            backgroundColor: theme.palette.background.red,
-            color: theme.palette.custom.lightText,
+            display: "flex",
+            justifyContent: "flex-end",
+            marginTop: "45px",
+            marginRight: "10px",
+            gap: "24px",
           }}
         >
-          Delete
-        </Button>
+          <Button
+            onClick={onClose}
+            variant="contained"
+            sx={{
+              ...buttonStyle,
+              backgroundColor: theme.palette.background.lightGrey,
+              color: theme.palette.custom.lightText,
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              ...buttonStyle,
+              backgroundColor: theme.palette.background.red,
+              color: theme.palette.custom.lightText,
+            }}
+          >
+            Delete
+          </Button>
+        </Box>
       </Box>
-    </Box>
-    //   </Modal>
+    </Modal>
   );
 }
 

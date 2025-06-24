@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -18,6 +19,9 @@ import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+import ModalEditProduct from "../ModalEditProduct/index";
+import ModalDeleteConfirmation from "../ModalDeleteConfirmation/index";
+
 import products from "../../data.json";
 
 const cellStyle = {
@@ -30,6 +34,11 @@ const cellStyle = {
 
 function ProductsPage() {
   const theme = useTheme();
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+
   return (
     <Box
       sx={{
@@ -244,10 +253,20 @@ function ProductsPage() {
                 {row.price}
               </TableCell>
               <TableCell>
-                <IconButton color="primary">
+                <IconButton
+                  onClick={() => {
+                    setSelectedProduct(row);
+                    setOpenEdit(true);
+                  }}
+                >
                   {<EditIcon sx={{ color: "rgba(0, 0, 0, 1)" }} />}
                 </IconButton>
-                <IconButton color="error">
+                <IconButton
+                  onClick={() => {
+                    setSelectedProduct(row);
+                    setOpenDelete(true);
+                  }}
+                >
                   {<DeleteIcon sx={{ color: "rgba(0, 0, 0, 1)" }} />}
                 </IconButton>
               </TableCell>
@@ -255,6 +274,16 @@ function ProductsPage() {
           ))}
         </TableBody>
       </Table>
+      <ModalEditProduct
+        open={openEdit}
+        onClose={() => setOpenEdit(false)}
+        product={selectedProduct}
+      />
+      <ModalDeleteConfirmation
+        open={openDelete}
+        onClose={() => setOpenDelete(false)}
+        product={selectedProduct}
+      />
     </Box>
   );
 }

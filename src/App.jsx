@@ -28,14 +28,14 @@ const theme = createTheme({
   },
 });
 
+import TransitionsModal from "./Components/ProductsPage/index";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* <LoginForm /> */}
-      {/* <ProductsPage /> */}
-      {/* <ModalEditProduct /> */}
-      {/* <ModalDeleteConfirmation /> */}
-      <ProductPreview />
+      <ProductsPage />
+      {/* <ProductPreview /> */}
     </ThemeProvider>
   );
 }
