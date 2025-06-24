@@ -9,7 +9,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@mui/material/styles";
 
-function ModalEditProduct({ open, onClose, product }) {
+function ModalAddProduct({ open, onClose, product }) {
   const theme = useTheme();
 
   const inputStyle = {
@@ -223,4 +223,4 @@ function ModalEditProduct({ open, onClose, product }) {
   );
 }
 
-export default ModalEditProduct;
+export default ModalAddProduct;

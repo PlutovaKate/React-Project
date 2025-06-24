@@ -21,6 +21,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import ModalEditProduct from "../ModalEditProduct/index";
 import ModalDeleteConfirmation from "../ModalDeleteConfirmation/index";
+import ModalAddProduct from "../ModalAddProduct/index";
 
 import products from "../../data.json";
 
@@ -38,6 +39,7 @@ function ProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
 
   return (
     <Box
@@ -84,6 +86,9 @@ function ProductsPage() {
         </Button>
 
         <Button
+          onClick={() => {
+            setOpenEdit(true);
+          }}
           variant="contained"
           sx={{
             backgroundColor: theme.palette.custom.lightText,
@@ -280,6 +285,12 @@ function ProductsPage() {
         product={selectedProduct}
       />
       <ModalDeleteConfirmation
+        open={openDelete}
+        onClose={() => setOpenDelete(false)}
+        product={selectedProduct}
+      />
+
+      <ModalAddProduct
         open={openDelete}
         onClose={() => setOpenDelete(false)}
         product={selectedProduct}
