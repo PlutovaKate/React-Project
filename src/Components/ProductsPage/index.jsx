@@ -94,10 +94,10 @@ function ProductsPage() {
       </Box>
       <Typography
         variant="h2"
-        fontWeight="bold"
         sx={{
           color: theme.palette.custom.lightText,
           marginTop: "5px",
+          fontWeight: "bold",
         }}
       >
         Products

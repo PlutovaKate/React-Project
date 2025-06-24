@@ -3,7 +3,6 @@ import { useTheme } from "@mui/material/styles";
 
 const buttonStyle = {
   minWidth: "115px",
-
   textTransform: "none",
   borderRadius: 0,
   fontWeight: "700",

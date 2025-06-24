@@ -3,6 +3,7 @@ import LoginForm from "./Components/LoginForm";
 import ProductsPage from "./Components/ProductsPage";
 import ModalEditProduct from "./Components/ModalEditProduct";
 import ModalDeleteConfirmation from "./Components/ModalDeleteConfirmation";
+import ProductPreview from "./Components/ProductPreview";
 
 const theme = createTheme({
   palette: {
@@ -22,6 +23,7 @@ const theme = createTheme({
       greenText: "rgba(5, 188, 82, 1)",
       darkGreyText: "rgba(114, 105, 105, 1)",
       lightGreyText: "rgba(165, 143, 143, 1)",
+      redText: "rgba(252, 91, 0, 1)",
     },
   },
 });
@@ -32,7 +34,8 @@ function App() {
       {/* <LoginForm /> */}
       {/* <ProductsPage /> */}
       {/* <ModalEditProduct /> */}
-      <ModalDeleteConfirmation />
+      {/* <ModalDeleteConfirmation /> */}
+      <ProductPreview />
     </ThemeProvider>
   );
 }
