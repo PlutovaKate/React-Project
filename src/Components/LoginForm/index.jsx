@@ -7,17 +7,20 @@ import {
   FormControl,
   InputLabel,
   OutlinedInput,
+  Typography,
 } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
 
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 import logo from "../../assets/logo.png";
 import hideImg from "../../assets/hide.png";
 
 function LoginForm() {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,12 +35,7 @@ function LoginForm() {
 
     localStorage.setItem("user", JSON.stringify({ username, password }));
     setError("");
-    alert("Logged in successfully!");
-    // setUsername("");
-    // setPassword("");
-
-    // const savedUser = JSON.parse(localStorage.getItem("user"));
-    // console.log(savedUser.username, savedUser.password);
+    navigate("/products");
   };
 
   return (

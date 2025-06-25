@@ -1,9 +1,8 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import LoginForm from "./Components/LoginForm";
 import ProductsPage from "./Components/ProductsPage";
-import ModalEditProduct from "./Components/ModalEditProduct";
-import ModalDeleteConfirmation from "./Components/ModalDeleteConfirmation";
 import ProductPreview from "./Components/ProductPreview";
+import { Route, Routes, Navigate } from "react-router";
 
 const theme = createTheme({
   palette: {
@@ -28,14 +27,21 @@ const theme = createTheme({
   },
 });
 
-import TransitionsModal from "./Components/ProductsPage/index";
-
 function App() {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <ThemeProvider theme={theme}>
-      {/* <LoginForm /> */}
-      <ProductsPage />
-      {/* <ProductPreview /> */}
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route
+          path="/products"
+          element={user ? <ProductsPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/preview"
+          element={user ? <ProductPreview /> : <Navigate to="/" />}
+        />
+      </Routes>
     </ThemeProvider>
   );
 }

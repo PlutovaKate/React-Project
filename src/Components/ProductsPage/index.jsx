@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
 import {
   Box,
   Button,
@@ -35,6 +37,7 @@ const cellStyle = {
 
 function ProductsPage() {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openEdit, setOpenEdit] = useState(false);
@@ -68,6 +71,7 @@ function ProductsPage() {
         }}
       >
         <Button
+          onClick={() => navigate("/preview")}
           variant="contained"
           sx={{
             backgroundColor: theme.palette.custom.lightText,
@@ -87,7 +91,8 @@ function ProductsPage() {
 
         <Button
           onClick={() => {
-            setOpenEdit(true);
+            setSelectedProduct(null);
+            setOpenAdd(true);
           }}
           variant="contained"
           sx={{
@@ -291,9 +296,9 @@ function ProductsPage() {
       />
 
       <ModalAddProduct
-        open={openDelete}
-        onClose={() => setOpenDelete(false)}
-        product={selectedProduct}
+        open={openAdd}
+        onClose={() => setOpenAdd(false)}
+        product={null}
       />
     </Box>
   );

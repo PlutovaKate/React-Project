@@ -61,7 +61,7 @@ function ModalAddProduct({ open, onClose, product }) {
               fontSize: "24px",
             }}
           >
-            Edit product
+            Add product
           </Typography>
           <IconButton>
             <CloseIcon onClick={onClose} sx={{ color: "rgba(0, 0, 0, 1)" }} />

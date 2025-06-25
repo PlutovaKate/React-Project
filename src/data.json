@@ -6,7 +6,7 @@
     "quantity": "5",
     "price": 25000,
     "description": "Latest Apple phone",
-    "photo": "../public/lenovoLaptop.jpg"
+    "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "quantity": "5",
     "price": 25000,
     "description": "Latest Apple phone",
-    "photo": "../public/lenovoLaptop.jpg"
+    "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "quantity": "5",
     "price": 25000,
     "description": "Latest Apple phone",
-    "photo": "../public/lenovoLaptop.jpg"
+    "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "quantity": "5",
     "price": 999,
     "description": "Latest Apple phone",
-    "photo": "../public/lenovoLaptop.jpg"
+    "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 5,
@@ -42,7 +42,7 @@
     "quantity": "5",
     "price": 999,
     "description": "Latest Apple phone",
-    "photo": "../public/lenovoLaptop.jpg"
+    "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 6,
@@ -51,6 +51,6 @@
     "quantity": "5",
     "price": 999,
     "description": "Latest Apple phone",
-    "photo": "../public/lenovoLaptop.jpg"
+    "photo": "/lenovoLaptop.jpg"
   }
 ]
