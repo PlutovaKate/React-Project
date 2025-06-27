@@ -1,5 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import PreviewIcon from "@mui/icons-material/Preview";
+import AddIcon from "@mui/icons-material/Add";
+import SortIcon from "@mui/icons-material/Sort";
+import {
+  addProduct,
+  deleteProduct,
+  updateProduct,
+} from "../../store/slices/productsSlice.js";
 
 import {
   Box,
@@ -25,8 +34,6 @@ import ModalEditProduct from "../ModalEditProduct/index";
 import ModalDeleteConfirmation from "../ModalDeleteConfirmation/index";
 import ModalAddProduct from "../ModalAddProduct/index";
 
-import products from "../../data.json";
-
 const cellStyle = {
   width: "16.66%",
   textAlign: "center",
@@ -38,11 +45,21 @@ const cellStyle = {
 function ProductsPage() {
   const theme = useTheme();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
+
+  const handleAdd = (product) => {
+    console.log("Dispatching add", product);
+    dispatch(addProduct(product));
+  };
+  const handleEdit = (product) => dispatch(updateProduct(product));
+  const handleDelete = (id) => dispatch(deleteProduct(id));
 
   return (
     <Box
@@ -52,22 +69,19 @@ function ProductsPage() {
         display: "flex",
         padding: "20px",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
       }}
     >
       <Box sx={{ marginLeft: "10px", alignSelf: "flex-start" }}>
         <img src={logo} alt="Rozetka Logo" style={{ height: "40px" }} />
       </Box>
+
       <Box
         sx={{
           width: "100%",
           display: "flex",
           justifyContent: "space-between",
-          paddingTop: "30px",
-          paddingLeft: "50px",
-          paddingRight: "50px",
-          alignItems: "center",
+          padding: "30px 50px 0",
         }}
       >
         <Button
@@ -76,16 +90,16 @@ function ProductsPage() {
           sx={{
             backgroundColor: theme.palette.custom.lightText,
             color: theme.palette.custom.greenText,
-            minWidth: "180px",
-            minHeight: "50px",
+            minWidth: 180,
+            minHeight: 50,
             gap: "10px",
-            fontWeight: "700",
-            fontSize: "16px",
+            fontWeight: 700,
+            fontSize: 16,
             borderRadius: 0,
             textTransform: "none",
           }}
         >
-          <PersonOutlineOutlinedIcon sx={{ color: "rgba(0, 0, 0, 1)" }} />
+          <PreviewIcon sx={{ color: "black" }} />
           Preview
         </Button>
 
@@ -98,24 +112,25 @@ function ProductsPage() {
           sx={{
             backgroundColor: theme.palette.custom.lightText,
             color: theme.palette.custom.greenText,
-            minWidth: "180px",
-            minHeight: "50px",
+            minWidth: 180,
+            minHeight: 50,
             gap: "10px",
-            fontWeight: "700",
-            fontSize: "16px",
+            fontWeight: 700,
+            fontSize: 16,
             borderRadius: 0,
             textTransform: "none",
           }}
         >
-          <AddOutlinedIcon sx={{ color: "rgba(0, 0, 0, 1)" }} />
+          <AddIcon sx={{ color: "black" }} />
           Add product
         </Button>
       </Box>
+
       <Typography
         variant="h2"
         sx={{
           color: theme.palette.custom.lightText,
-          marginTop: "5px",
+          mt: 1,
           fontWeight: "bold",
         }}
       >
@@ -124,76 +139,27 @@ function ProductsPage() {
 
       <Table sx={{ marginTop: "75px", maxWidth: "870px" }}>
         <TableHead
-          sx={{
-            backgroundColor: theme.palette.background.brightGreen,
-          }}
+          sx={{ backgroundColor: theme.palette.background.brightGreen }}
         >
           <TableRow>
-            <TableCell
-              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
-            >
-              ID
-              <SyncAltOutlinedIcon
-                sx={{
-                  transform: "rotate(90deg)",
-                  maxHeight: "14px",
-                }}
-              />
-            </TableCell>
-            <TableCell
-              sx={{
-                color: theme.palette.custom.darkGreyText,
-                width: "16.66%",
-                textAlign: "center",
-                verticalAlign: "middle",
-                fontWeight: "700",
-                fontSize: "16px",
-              }}
-            >
-              Category
-              <SyncAltOutlinedIcon
-                sx={{
-                  transform: "rotate(90deg)",
-                  maxHeight: "14px",
-                }}
-              />
-            </TableCell>
-            <TableCell
-              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
-            >
-              Name
-              <SyncAltOutlinedIcon
-                sx={{
-                  transform: "rotate(90deg)",
-                  maxHeight: "14px",
-                }}
-              />
-            </TableCell>
-            <TableCell
-              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
-            >
-              Quantity
-              <SyncAltOutlinedIcon
-                sx={{
-                  transform: "rotate(90deg)",
-                  maxHeight: "14px",
-                }}
-              />
-            </TableCell>
-            <TableCell
-              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
-            >
-              Price (₴)
-              <SyncAltOutlinedIcon
-                sx={{
-                  transform: "rotate(90deg)",
-                  maxHeight: "14px",
-                }}
-              />
-            </TableCell>
-            <TableCell
-              sx={{ ...cellStyle, color: theme.palette.custom.darkGreyText }}
-            ></TableCell>
+            {["ID", "Category", "Name", "Quantity", "Price (₴)", ""].map(
+              (col) => (
+                <TableCell
+                  key={col}
+                  sx={{
+                    ...cellStyle,
+                    color: theme.palette.custom.darkGreyText,
+                  }}
+                >
+                  {col}
+                  {col && (
+                    <SortIcon
+                      sx={{ transform: "rotate(90deg)", fontSize: 16 }}
+                    />
+                  )}
+                </TableCell>
+              )
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -207,61 +173,22 @@ function ProductsPage() {
                     : theme.palette.background.lightGreen,
               }}
             >
-              <TableCell
-                sx={{
-                  ...cellStyle,
-                  color:
-                    index % 2 === 0
-                      ? theme.palette.custom.lightText
-                      : theme.palette.custom.lightGreyText,
-                }}
-              >
-                {row.id}
-              </TableCell>
-              <TableCell
-                sx={{
-                  ...cellStyle,
-                  color:
-                    index % 2 === 0
-                      ? theme.palette.custom.lightText
-                      : theme.palette.custom.lightGreyText,
-                }}
-              >
-                {row.category}
-              </TableCell>
-              <TableCell
-                sx={{
-                  ...cellStyle,
-                  color:
-                    index % 2 === 0
-                      ? theme.palette.custom.lightText
-                      : theme.palette.custom.lightGreyText,
-                }}
-              >
-                {row.name}
-              </TableCell>
-              <TableCell
-                sx={{
-                  ...cellStyle,
-                  color:
-                    index % 2 === 0
-                      ? theme.palette.custom.lightText
-                      : theme.palette.custom.lightGreyText,
-                }}
-              >
-                {row.quantity}
-              </TableCell>
-              <TableCell
-                sx={{
-                  ...cellStyle,
-                  color:
-                    index % 2 === 0
-                      ? theme.palette.custom.lightText
-                      : theme.palette.custom.lightGreyText,
-                }}
-              >
-                {row.price}
-              </TableCell>
+              {[row.id, row.category, row.name, row.quantity, row.price].map(
+                (value, i) => (
+                  <TableCell
+                    key={i}
+                    sx={{
+                      ...cellStyle,
+                      color:
+                        index % 2 === 0
+                          ? theme.palette.custom.lightText
+                          : theme.palette.custom.lightGreyText,
+                    }}
+                  >
+                    {value}
+                  </TableCell>
+                )
+              )}
               <TableCell>
                 <IconButton
                   onClick={() => {
@@ -269,7 +196,7 @@ function ProductsPage() {
                     setOpenEdit(true);
                   }}
                 >
-                  {<EditIcon sx={{ color: "rgba(0, 0, 0, 1)" }} />}
+                  <EditIcon sx={{ color: "black" }} />
                 </IconButton>
                 <IconButton
                   onClick={() => {
@@ -277,28 +204,30 @@ function ProductsPage() {
                     setOpenDelete(true);
                   }}
                 >
-                  {<DeleteIcon sx={{ color: "rgba(0, 0, 0, 1)" }} />}
+                  <DeleteIcon sx={{ color: "black" }} />
                 </IconButton>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
       <ModalEditProduct
         open={openEdit}
         onClose={() => setOpenEdit(false)}
         product={selectedProduct}
+        onSubmit={handleEdit}
       />
       <ModalDeleteConfirmation
         open={openDelete}
         onClose={() => setOpenDelete(false)}
         product={selectedProduct}
+        onConfirm={handleDelete}
       />
-
       <ModalAddProduct
         open={openAdd}
         onClose={() => setOpenAdd(false)}
-        product={null}
+        onSubmit={handleAdd}
       />
     </Box>
   );

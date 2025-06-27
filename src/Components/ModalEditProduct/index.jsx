@@ -8,210 +8,119 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@mui/material/styles";
+import { useState, useEffect } from "react";
 
-function ModalEditProduct({ open, onClose, product }) {
+function ModalEditProduct({ open, onClose, product, onSubmit }) {
   const theme = useTheme();
+  const [form, setForm] = useState({});
 
-  const inputStyle = {
-    background: theme.palette.custom.lightText,
-    borderRadius: 0,
-    marginBottom: "20px",
-    height: "30px",
-    "& .MuiOutlinedInput-root": {
-      height: "30px",
-      padding: 0,
-    },
-    "& input": {
-      height: "30px",
-      padding: "0 8px",
-      boxSizing: "border-box",
-      color: theme.palette.custom.greenText,
-      fontWeight: "bold",
-    },
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: "none",
-    },
+  useEffect(() => {
+    if (product) setForm(product);
+  }, [product]);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    onSubmit(form);
+    onClose();
   };
 
   return (
     <Modal open={open} onClose={onClose}>
       <Box
         sx={{
-          width: "430px",
+          width: 430,
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          backgroundColor: theme.palette.background.grey,
         }}
       >
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            padding: "10px",
             backgroundColor: theme.palette.custom.lightText,
-            paddingLeft: "10px",
-            paddingRight: "10px",
           }}
         >
           <Typography
             sx={{
               color: theme.palette.background.grey,
-              fontWeight: "700px",
+              fontWeight: "700",
               fontSize: "24px",
             }}
           >
             Edit product
           </Typography>
-          <IconButton>
-            <CloseIcon onClick={onClose} sx={{ color: "rgba(0, 0, 0, 1)" }} />
+          <IconButton onClick={onClose}>
+            <CloseIcon sx={{ color: "black" }} />
           </IconButton>
         </Box>
 
-        <Box
-          sx={{
-            backgroundColor: theme.palette.background.grey,
-            padding: "30px",
-          }}
-        >
-          <Box>
-            <Typography
-              sx={{
-                color: theme.palette.custom.lightText,
-                fontWeight: "700px",
-                fontSize: "14px",
-              }}
-            >
-              Category
-            </Typography>
-            <TextField
-              defaultValue={product?.category || ""}
-              variant="outlined"
-              fullWidth
-              hiddenLabel
-              sx={inputStyle}
-            />
-          </Box>
+        <Box sx={{ padding: "30px" }}>
+          {[
+            "category",
+            "name",
+            "quantity",
+            "price",
+            "description",
+            "photo",
+          ].map((field) => (
+            <Box key={field} sx={{ mb: 2 }}>
+              <Typography
+                sx={{
+                  color: theme.palette.custom.lightText,
+                  fontWeight: "700",
+                  fontSize: "14px",
+                }}
+              >
+                {field[0].toUpperCase() + field.slice(1)}
+              </Typography>
+              <TextField
+                name={field}
+                value={form[field] || ""}
+                onChange={handleChange}
+                variant="outlined"
+                fullWidth
+                hiddenLabel
+                multiline={field === "description"}
+                rows={field === "description" ? 4 : 1}
+                sx={{
+                  backgroundColor: theme.palette.custom.lightText,
+                  borderRadius: 0,
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Box>
+          ))}
 
-          <Box>
-            <Typography
-              sx={{
-                color: theme.palette.custom.lightText,
-                fontWeight: "700px",
-                fontSize: "14px",
-              }}
-            >
-              Name
-            </Typography>
-            <TextField
-              defaultValue={product?.name || ""}
-              variant="outlined"
-              fullWidth
-              hiddenLabel
-              sx={inputStyle}
-            />
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                color: theme.palette.custom.lightText,
-                fontWeight: "700px",
-                fontSize: "14px",
-              }}
-            >
-              Quantity
-            </Typography>
-            <TextField
-              defaultValue={product?.quantity || ""}
-              type="number"
-              variant="outlined"
-              fullWidth
-              hiddenLabel
-              sx={inputStyle}
-            />
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                color: theme.palette.custom.lightText,
-                fontWeight: "700px",
-                fontSize: "14px",
-              }}
-            >
-              Price
-            </Typography>
-            <TextField
-              defaultValue={product?.price || ""}
-              type="number"
-              variant="outlined"
-              fullWidth
-              hiddenLabel
-              sx={inputStyle}
-            />
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                color: theme.palette.custom.lightText,
-                fontWeight: "700px",
-                fontSize: "14px",
-              }}
-            >
-              Description
-            </Typography>
-            <TextField
-              multiline
-              rows={5}
-              fullWidth
-              variant="outlined"
-              hiddenLabel
-              sx={{
-                ...inputStyle,
-                height: "auto",
-                "& .MuiOutlinedInput-root": {
-                  padding: 0,
-                },
-                "& textarea": {
-                  color: theme.palette.custom.greenText,
-                  fontWeight: "bold",
-                  padding: "8px",
-                },
-              }}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              marginTop: "20px",
-              gap: "24px",
-            }}
-          >
+          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
             <Button
               onClick={onClose}
               variant="contained"
               sx={{
-                minWidth: "115px",
                 backgroundColor: theme.palette.custom.darkGreyText,
                 color: theme.palette.custom.lightText,
-                textTransform: "none",
                 borderRadius: 0,
+                textTransform: "none",
               }}
             >
               Cancel
             </Button>
-
             <Button
+              onClick={handleSubmit}
               variant="contained"
               sx={{
-                minWidth: "115px",
                 backgroundColor: theme.palette.primary.main,
                 color: theme.palette.custom.lightText,
-                textTransform: "none",
                 borderRadius: 0,
+                textTransform: "none",
               }}
             >
               Submit

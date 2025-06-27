@@ -7,12 +7,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useSelector } from "react-redux";
 import logo from "../../assets/logo-white-color.png";
 import cartIcon from "../../assets/cart.svg";
-import products from "../../data.json";
 
 function ProductPreview() {
   const theme = useTheme();
+
+  const products = useSelector((state) => state.products);
 
   return (
     <Box
@@ -22,7 +24,7 @@ function ProductPreview() {
         padding: "20px",
       }}
     >
-      <Box sx={{ marginLeft: "10px", alignSelf: "flex-start" }}>
+      <Box sx={{ marginLeft: "10px" }}>
         <img src={logo} alt="Rozetka Logo" style={{ height: "40px" }} />
       </Box>
 
@@ -54,22 +56,17 @@ function ProductPreview() {
               component="img"
               image={product.photo}
               alt={product.name}
-              sx={{
-                objectFit: "contain",
-                marginBottom: "25px",
-                // maxWidth: "210px",
-              }}
+              sx={{ objectFit: "contain", mb: 3 }}
             />
-
             <CardContent sx={{ p: 0 }}>
               <Typography
                 variant="h6"
                 sx={{
-                  fontWeight: "500",
+                  fontWeight: 500,
                   fontSize: "16px",
                   textAlign: "center",
-                  marginBottom: "20px",
-                  color: "rgba(0, 0, 0, 1)",
+                  mb: 2,
+                  color: "black",
                 }}
               >
                 {product.name}
@@ -79,44 +76,30 @@ function ProductPreview() {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  marginBottom: "35px",
+                  mb: 3,
+                  gap: 5,
                 }}
               >
                 <Typography
-                  sx={{
-                    color: theme.palette.custom.redText,
-                    fontWeight: "700",
-                  }}
+                  sx={{ color: theme.palette.custom.redText, fontWeight: 700 }}
                 >
                   {product.price}₴
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "rgba(0, 0, 0, 1)",
-                    fontWeight: "500",
-                    fontSize: "15px",
-                  }}
-                >
+                <Typography sx={{ fontSize: "15px", fontWeight: 500 }}>
                   Кількість: {product.quantity}
                 </Typography>
               </Box>
             </CardContent>
 
             <CardActions
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-              }}
+              sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
             >
               <img src={cartIcon} alt="cart" width={28} height={28} />
-
               <Typography
                 sx={{
                   color: theme.palette.custom.greenText,
                   fontSize: "15px",
-                  fontWeight: "500",
+                  fontWeight: 500,
                 }}
               >
                 Готовий до відправки

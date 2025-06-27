@@ -1,20 +1,20 @@
 [
   {
     "id": 1,
-    "category": "phone",
+    "category": "laptop",
     "name": "Ноутбук Lenovo Y50-70 Aluminum Black",
     "quantity": "5",
-    "price": 25000,
-    "description": "Latest Apple phone",
+    "price": 45000,
+    "description": "Latest Lenovo",
     "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 2,
-    "category": "phone",
-    "name": "Ноутбук Lenovo Y50-70 Aluminum Black",
+    "category": "laptop",
+    "name": "Ноутбук HP Victus Gaming Laptop 15-fa1031ua",
     "quantity": "5",
-    "price": 25000,
-    "description": "Latest Apple phone",
+    "price": 35000,
+    "description": "Latest Lenovo",
     "photo": "/lenovoLaptop.jpg"
   },
   {
@@ -29,27 +29,27 @@
   {
     "id": 4,
     "category": "phone",
-    "name": "iPhone 15 Pro",
-    "quantity": "5",
-    "price": 999,
+    "name": "iPhone 14 Pro",
+    "quantity": "4",
+    "price": 22000,
     "description": "Latest Apple phone",
     "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 5,
     "category": "phone",
-    "name": "iPhone 15 Pro",
-    "quantity": "5",
-    "price": 999,
+    "name": "iPhone 13 Pro",
+    "quantity": "3",
+    "price": 19000,
     "description": "Latest Apple phone",
     "photo": "/lenovoLaptop.jpg"
   },
   {
     "id": 6,
     "category": "phone",
-    "name": "iPhone 15 Pro",
+    "name": "iPhone 11 Pro",
     "quantity": "5",
-    "price": 999,
+    "price": 10000,
     "description": "Latest Apple phone",
     "photo": "/lenovoLaptop.jpg"
   }

@@ -9,7 +9,7 @@ const buttonStyle = {
   fontSize: "16px",
 };
 
-function ModalDeleteConfirmation({ open, onClose, product }) {
+function ModalDeleteConfirmation({ open, onClose, product, onConfirm }) {
   const theme = useTheme();
 
   return (
@@ -59,6 +59,10 @@ function ModalDeleteConfirmation({ open, onClose, product }) {
           </Button>
           <Button
             variant="contained"
+            onClick={() => {
+              onConfirm(product.id);
+              onClose();
+            }}
             sx={{
               ...buttonStyle,
               backgroundColor: theme.palette.background.red,
